@@ -35,7 +35,7 @@ global_matrix[-1, -2] = face_dr[-2] / dr
 # Adjust the RHS for the Dirchlet condition
 rhs[-1] -= ((face_dr[-1] / (dr / 2)) * U_r)
 
-# Correct the bottom of the pipe (Neumann)
+# Correct the middle of the pipe (Neumann)
 global_matrix[0, 0] = -face_dr[1] / dr
 global_matrix[0, 1] = face_dr[1] / dr
 
