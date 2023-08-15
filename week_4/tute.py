@@ -11,12 +11,13 @@ length = 20 # m
 total_time = 3 * 60 * 60
 
 n_cells = 20
+time_between_plots = 540
 dx = length / n_cells
 
 x_locations = np.linspace(0.5 * dx, (n_cells - 0.5) * dx, n_cells)
 
 dt = 0.2 # secs
-plot_dt = 2700 # secs
+plot_dt = time_between_plots / dt # secs
 steps = int(total_time / dt) + 1
 
 concentration = np.zeros(n_cells, dtype = float)
@@ -25,7 +26,7 @@ new_concentration = np.zeros(n_cells, dtype = float)
 fig, ax = plt.subplots(1, 2, subplot_kw = dict(box_aspect = 1))
 
 plot_ls = []
-n_plots = int(total_time / 540)
+n_plots = int(total_time / time_between_plots)
 
 time = 0
 for step in range(steps):
@@ -71,7 +72,7 @@ def computeConcentrations(x_locations, plot_ls) -> np.array:
 
     return np.array(tot_concent)
 
-time_arr = np.linspace(0, total_time, 20)
+time_arr = np.linspace(0, total_time, n_plots)
 ax[1].plot(time_arr, computeConcentrations(x_locations, plot_ls))
 
 
